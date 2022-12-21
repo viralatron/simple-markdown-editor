@@ -1,4 +1,4 @@
-const basetext = `# Welcome to my React Markdown Editor!
+function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}const basetext = `# Welcome to my React Markdown Editor!
 
 ## This is a sub-heading...
 ### And here's some other cool stuff:
@@ -42,42 +42,42 @@ And here. | Okay. | I think we get it.
 
 ![freeCodeCamp Logo](https://cdn.freecodecamp.org/testable-projects-fcc/images/fcc_secondary.svg)`;
 
-class App extends React.Component{
-  constructor(props){
-    super(props);
-    
-    this.state = {
-      text: basetext,
-      preview: this.parseMarked(basetext)
-    }
-  }
-  
-  handleValue = (ev) => {
-    console.log(ev.target.value);
-    this.setState({
-      text: ev.target.value,
-      preview: this.parseMarked(ev.target.value)
-    });
-  }
-  
-  parseMarked = (val) =>{
-    return  DOMPurify.sanitize(marked.parse(val, {breaks: true}))
-  }
-  
+class App extends React.Component {
+  constructor(props) {
+    super(props);_defineProperty(this, "handleValue",
+
+
+
+
+
+
+
+    ev => {
+      console.log(ev.target.value);
+      this.setState({
+        text: ev.target.value,
+        preview: this.parseMarked(ev.target.value) });
+
+    });_defineProperty(this, "parseMarked",
+
+    val => {
+      return DOMPurify.sanitize(marked.parse(val, { breaks: true }));
+    });this.state = { text: basetext, preview: this.parseMarked(basetext) };}
+
   render() {
-    return(<>
-        <Editor handleValue={this.handleValue} value={this.state.text}/>
-        <Previewer output={this.state.preview} />
-      </>);
-  }
+    return /*#__PURE__*/React.createElement(React.Fragment, null, /*#__PURE__*/
+    React.createElement(Editor, { handleValue: this.handleValue, value: this.state.text }), /*#__PURE__*/
+    React.createElement(Previewer, { output: this.state.preview }));
+
+  }}
+;
+
+const Editor = ({ handleValue, value }) => {
+  return /*#__PURE__*/React.createElement("div", { className: "editorWrap" }, /*#__PURE__*/React.createElement("h2", { className: 'title' }, "Editor"), /*#__PURE__*/React.createElement("textarea", { id: "editor", value: value, onChange: handleValue }));
 };
 
-const Editor = ({handleValue, value}) => {
-  return <div className={"editorWrap"}><h2 className={'title'}>Editor</h2><textarea id="editor" value={value} onChange={handleValue}/></div>
-}
+const Previewer = ({ output }) => {
+  return /*#__PURE__*/React.createElement("div", { className: "previewWrap" }, /*#__PURE__*/React.createElement("h2", { className: 'title' }, "Previewer"), /*#__PURE__*/React.createElement("div", { id: "preview", dangerouslySetInnerHTML: { __html: output } }));
+};
 
-const Previewer = ({output}) => {
-  return <div className={"previewWrap"}><h2 className={'title'}>Previewer</h2><div id="preview" dangerouslySetInnerHTML={{__html: output}}></div></div>
-}
-
-ReactDOM.render(<App/>, document.querySelector('.app'));
+ReactDOM.render( /*#__PURE__*/React.createElement(App, null), document.querySelector('.app'));
